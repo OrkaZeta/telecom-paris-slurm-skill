@@ -47,7 +47,7 @@ Status: **USER-APPROVED POLICY, WITH EXPLICIT UNCONFIRMED IMPLEMENTATION DETAILS
 
 ## SOP-06. Storage and output
 
-- Shared model/checkpoint directory: configured `shared_checkpoint_root` in [SKILL.md](../SKILL.md). Reuse weights instead of copying into each project. Changes to common checkpoint files are approval-gated.
+- Shared model/checkpoint directory: choose an established subdirectory under `shared_project_root`, such as `ckpt`, `models`, `weights`, or `checkpoints`. Reuse weights instead of copying into each project. Changes to common checkpoint files are approval-gated.
 - User-reported planning caps (not independently verified free space) and associated paths are listed in the `cluster` configuration in [SKILL.md](../SKILL.md).
 - Put job logs, generated artifacts, intermediary shards and output manifests inside the chosen project tree; final naming conventions and temp filesystem **PENDING USER CONFIRMATION**. Avoid large datasets, model clones or results in either home directory by default.
 - Before write-heavy work: `df -h` / `df -i` on relevant mounts, `du -sh` on relevant folders, and `quota -s` where supported; ask an administrator if actual quota differs from reported numbers. Check write permission with a safe targeted operation if needed and approved.

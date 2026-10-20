@@ -26,12 +26,12 @@ Discover further module names with `module spider` or `module keyword ...`.
 
 | Path | Role | User-stated usable budget | Validation |
 |---|---|---|---|
-| Configured shared checkpoint root (see [SKILL.md](../SKILL.md)) | Common model/checkpoint storage | Within configured shared project budget | Existence, permissions and sharing conventions to check |
+| `<shared_project_root>/{ckpt,models,weights,checkpoints}` | Common model/checkpoint storage | Within configured shared project budget | Choose an existing convention; check existence, permissions and sharing rules |
 | Configured shared project root (see [SKILL.md](../SKILL.md)) | Shared project-area jobs/data | User-reported planning cap | Not verified as filesystem quota or currently free space |
 | Configured `home_ids` path (see [SKILL.md](../SKILL.md)) | User home | User-reported planning cap | Approximate, not independently checked |
 | Configured `home_infres` path (see [SKILL.md](../SKILL.md)) | Additional home/work area | User-reported planning cap | Approximate, not independently checked |
 
-Never treat these figures as guaranteed free capacity. Project-specific output/log/tmp path conventions are not established. The shared checkpoints directory is not an implicit permission to overwrite/download weights there.
+Never treat these figures as guaranteed free capacity. Project-specific output/log/tmp path conventions are not established. A shared model/checkpoint subdirectory is not implicit permission to overwrite or download weights there.
 
 ## Suggested verification (read-only)
 

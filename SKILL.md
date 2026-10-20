@@ -4,9 +4,8 @@ description: "Plan, validate, submit and autonomously debug Slurm workloads with
 # Site and account configuration: edit these values when adapting this skill.
 cluster:
   # Personal Info
-  user: ziyliu-24
-  shared_project_root: /projects/geometry/orka
-  shared_checkpoint_root: /projects/geometry/orka/checkpoints
+  user: <IDS cluster username>
+  shared_project_root: <user's default project directory; customize if different>
   # System Info
   gateway: gpu-gw.enst.fr
   name: gpucluster
@@ -38,7 +37,7 @@ Use for cluster workload planning, GPU/node selection, environment setup, `sbatc
 - **SOP-03 Jobs**: Prefer one ordinary `sbatch` per independently resumable work unit. Do not introduce job arrays by default. Respect job submission caps; distinguish job count from sample count.
 - **SOP-04 QoS**: Choose `normal` as the safe fallback. Consider `runfill` only if the actual scheduler interruption/preemption/requeue rules are verified **and** the work is interruption tolerant. A short *per-sample* ETA may make `runfill` suitable if each sample is durably saved and loss on interruption is small. A short total job ETA alone is not sufficient. No universal ETA cutoff has been approved.
 - **SOP-05 Environment**: Strongly prefer **project-local uv** and pinned Python/CUDA/packages; source site modules explicitly. Do not use sudo. Do not switch to conda/system pip or make global installs unless explicitly approved for the task. Verify CUDA/torch/kernel extension compatibility rather than assuming `cuda/12.9` works for everything.
-- **SOP-06 Storage**: Shared model/checkpoint root and planning budgets are in the `cluster` configuration above. Project-specific logs, work, outputs and intermediate data belong under an explicit project root. Treat configured budgets as user-reported, not verified filesystem quotas. Avoid duplicate model weights. Never delete/overwrite shared checkpoints without separate approval.
+- **SOP-06 Storage**: Shared project root and planning budgets are in the `cluster` configuration above. Store shared models/checkpoints under an established subdirectory such as `ckpt`, `models`, `weights`, or `checkpoints`. Project-specific logs, work, outputs and intermediate data belong under an explicit project root. Treat configured budgets as user-reported, not verified filesystem quotas. Avoid duplicate model weights. Never delete/overwrite shared checkpoints without separate approval.
 - **SOP-07 Recovery**: Automatically diagnose, fix, cancel and retry jobs within an approved workload. Ensure idempotence, checkpoint safety and bounded retries.
 - **SOP-08 Execution authorization**: Explicit approval is required once per workload scope. Subsequent submission, debugging, monitoring, cancellation and retries within that scope need no additional confirmation.
 
